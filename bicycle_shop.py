@@ -16,17 +16,22 @@ Specialized_Bike = bicycle("Specialized Bike", 24, 830)
 class bike_shop(object):
   def __init__(self, name, inventory, margin):
       self.name = name
-      self.inventory = inventory
       self.margin = margin
+      self.inventory = inventory
       
   def price(self):
       self.price = {}
       for bike in self.inventory:
         self.price [bike.name] = bike.production_cost *((self.margin/100) + 1)
         
-cb_inventory = [Starter_Bike, Commuter_Bike, Mountain_Bike, Folding_Bike, Racing_Bike, Specialized_Bike]
-City_Bikes = bike_shop("City Bikes", cb_inventory, 20.0)
+  def inventory_name(self):
+      self.inventory_name = []
+      for bike in self.inventory:
+        self.inventory_name.append(bike.name)
+        
+City_Bikes = bike_shop("City Bikes", [Starter_Bike, Commuter_Bike, Mountain_Bike, Folding_Bike, Racing_Bike, Specialized_Bike], 20.0)
 City_Bikes.price()
+City_Bikes.inventory_name()
 
 class customer(object):
   def __init__(self, name, budget):
@@ -42,6 +47,9 @@ Emily = customer("Emily", 1000)
 Katy = customer("Katy", 500)
 Alyssa = customer("Alyssa", 250)
 customers = [Emily, Katy, Alyssa]
+
 for customer in customers:
   customer.afford(City_Bikes)
   print customer.buy
+  
+print City_Bikes.inventory_name
