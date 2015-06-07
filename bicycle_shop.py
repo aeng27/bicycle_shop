@@ -18,6 +18,7 @@ class bike_shop(object):
       self.name = name
       self.margin = margin
       self.inventory = inventory
+      self.profit = []
       
   def price(self):
       self.price = {}
@@ -53,3 +54,20 @@ for customer in customers:
   print customer.buy
   
 print City_Bikes.inventory_name
+#print City_Bikes.price
+
+class purchase(object):
+  def __init__(self, name, bike, shop):
+    self.name = name
+    self.bike = bike
+    self.shop = shop
+    self.money_left = self.name.budget - self.shop.price[self.bike]
+    print [self.name.name, self.bike, self.money_left]
+    self.shop.inventory_name.remove(self.bike)
+    self.shop.profit.append(self.shop.price[self.bike])
+    
+purchase(Emily, "Racing Bike", City_Bikes)
+purchase(Katy, "Folding Bike", City_Bikes)
+purchase(Alyssa, "Commuter Bike", City_Bikes)
+print City_Bikes.inventory_name
+print sum(City_Bikes.profit)
